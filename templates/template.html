@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Go Guestbook 2025</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/guestbook.js"></script>
+  </head>
+  <body>
+    <h1>Go Guestbook</h1>
+
+    <form action="/sign" method="post" onsubmit="handleFormSubmit(event)">
+      <div><label for="author">Name (optional):</label></div>
+      <div><input type="text" name="author" id="author" placeholder="Your Name"></div>
+      <div><label for="content">Message:</label></div>
+      <div><textarea name="content" id="content" rows="3" cols="60" required placeholder="Leave a message..."></textarea></div>
+      <div><input type="submit" value="Sign Guestbook"></div>
+    </form>
+
+    <hr>
+
+    <div id="entries"></div>
+
+  </body>
+</html>

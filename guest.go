@@ -38,37 +38,20 @@ func root(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// render the template with the entries
-	if err := guestbookTemplate.Execute(w, entries); err != nil {
+	if err := getGuestbookTemplate().Execute(w, entries); err != nil {
 		log.Printf("Error executing template: %v", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }
 
-var guestbookTemplate = template.Must(template.New("book").Parse(`
-<html>
-  <head>
-    <title>Go Guestbook 2025</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <script src="/static/guestbook.js"></script>
-  </head>
-  <body>
-    <h1>Go Guestbook</h1>
-
-    <form action="/sign" method="post" onsubmit="handleFormSubmit(event)">
-      <div><label for="author">Name (optional):</label></div>
-      <div><input type="text" name="author" id="author" placeholder="Your Name"></div>
-      <div><label for="content">Message:</label></div>
-      <div><textarea name="content" id="content" rows="3" cols="60" required placeholder="Leave a message..."></textarea></div>
-      <div><input type="submit" value="Sign Guestbook"></div>
-    </form>
-
-    <hr>
-
-    <div id="entries"></div>
-
-  </body>
-</html>
-`))
+// Updated to load the HTML template from an external file for better modularity
+func getGuestbookTemplate() *template.Template {
+	tmpl, err := template.ParseFiles("templates/template.html")
+	if err != nil {
+		log.Fatalf("Failed to parse template: %v", err)
+	}
+	return tmpl
+}
 
 func sign(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
