@@ -49,52 +49,7 @@ var guestbookTemplate = template.Must(template.New("book").Parse(`
   <head>
     <title>Go Guestbook 2025</title>
     <link rel="stylesheet" href="/static/style.css">
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // Load greetings from local storage
-        const storedGreetings = JSON.parse(localStorage.getItem("greetings")) || [];
-        const entriesContainer = document.getElementById("entries");
-
-        if (storedGreetings.length > 0) {
-          storedGreetings.forEach(entry => {
-            const entryDiv = document.createElement("div");
-            entryDiv.className = "entry";
-            entryDiv.innerHTML = '<p><b>' + (entry.Author || "An anonymous person") + '</b> wrote:</p>' +
-              '<pre>' + entry.Content + '</pre>' +
-              '<small>' + entry.Date + '</small>';
-            entriesContainer.appendChild(entryDiv);
-          });
-        } else {
-          entriesContainer.innerHTML = "<p>No entries yet. Be the first!</p>";
-        }
-      });
-
-      function saveGreeting(author, content) {
-        const newGreeting = {
-          Author: author || "Anonymous",
-          Content: content,
-          Date: new Date().toLocaleString()
-        };
-
-        const storedGreetings = JSON.parse(localStorage.getItem("greetings")) || [];
-        storedGreetings.unshift(newGreeting); // Add new greeting to the beginning
-        localStorage.setItem("greetings", JSON.stringify(storedGreetings));
-      }
-
-      function handleFormSubmit(event) {
-        event.preventDefault();
-        const author = document.getElementById("author").value;
-        const content = document.getElementById("content").value;
-
-        if (content.trim() === "") {
-          alert("Message cannot be empty.");
-          return;
-        }
-
-        saveGreeting(author, content);
-        event.target.submit(); // Submit the form to the server
-      }
-    </script>
+    <script src="/static/guestbook.js"></script>
   </head>
   <body>
     <h1>Go Guestbook</h1>
