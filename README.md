@@ -9,9 +9,10 @@ This project is a simple guestbook web application written in Go. It was origina
 - Simple and clean HTML interface styled with CSS.
 - Messages are stored in the browser's local storage for offline access.
 
-## Project Structure
+## Updated Project Structure
 
 - `guest.go`: The main Go application file containing the server logic.
+- `templates/template.html`: The HTML template for the guestbook interface.
 - `static/style.css`: The CSS file for styling the guestbook.
 - `static/guestbook.js`: The JavaScript file for handling local storage and form submission.
 
@@ -32,6 +33,11 @@ This project is a simple guestbook web application written in Go. It was origina
 2. Click "Sign Guestbook" to submit your message.
 3. View your message along with others on the main page.
 4. Messages are saved in your browser's local storage and will persist even if the page is refreshed.
+
+## Recent Updates
+
+- Modularized the HTML template by moving it to a separate file (`templates/template.html`).
+- Improved code maintainability and separation of concerns.
 
 ## License
 
